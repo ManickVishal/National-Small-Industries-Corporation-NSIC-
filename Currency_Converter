@@ -1,0 +1,127 @@
+# MainActivity.Java
+
+package com.example.mycurrencyconverter;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.lang.Math;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView tv1=(TextView)findViewById(R.id.head);
+        TextView tv2=(TextView)findViewById(R.id.ind);
+        TextView tv3=(TextView)findViewById(R.id.res);
+        EditText e1=(EditText)findViewById(R.id.given);
+        EditText e2=(EditText)findViewById(R.id.obtained);
+        Button b1=(Button)findViewById(R.id.usd);
+        Button b2=(Button)findViewById(R.id.jpy);
+        Button b3=(Button)findViewById(R.id.aud);
+        Button b4=(Button)findViewById(R.id.euro);
+        ImageView iv1=(ImageView) findViewById(R.id.box1);
+        ImageView iv2=(ImageView) findViewById(R.id.box2);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 0.012;
+                e2.setText(Double.toString(r)+ " Dollar");
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 1.71;
+                e2.setText(Double.toString(r)+" Yen");
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 0.018;
+                e2.setText(Double.toString(r)+ " Dollar");
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 0.011;
+                e2.setText(Double.toString(r)+ " euro");
+            }
+        });   }
+}
+
+# Acitivity_main.xml
+
+package com.example.mycurrencyconverter;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.lang.Math;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView tv1=(TextView)findViewById(R.id.head);
+        TextView tv2=(TextView)findViewById(R.id.ind);
+        TextView tv3=(TextView)findViewById(R.id.res);
+        EditText e1=(EditText)findViewById(R.id.given);
+        EditText e2=(EditText)findViewById(R.id.obtained);
+        Button b1=(Button)findViewById(R.id.usd);
+        Button b2=(Button)findViewById(R.id.jpy);
+        Button b3=(Button)findViewById(R.id.aud);
+        Button b4=(Button)findViewById(R.id.euro);
+        ImageView iv1=(ImageView) findViewById(R.id.box1);
+        ImageView iv2=(ImageView) findViewById(R.id.box2);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 0.012;
+                e2.setText(Double.toString(r)+ " Dollar");
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 1.71;
+                e2.setText(Double.toString(r)+" Yen");
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 0.018;
+                e2.setText(Double.toString(r)+ " Dollar");
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Double d = Double.parseDouble(e1.getText().toString());
+                double r = d * 0.011;
+                e2.setText(Double.toString(r)+ " euro");
+            }
+        });   }
+}
