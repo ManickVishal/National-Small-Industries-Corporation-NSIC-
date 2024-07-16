@@ -1,0 +1,107 @@
+# MainActivity.java
+
+package com.example.mytimer;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private TextView textViewCountdown;
+    private Button startTimerButton;
+    private CountDownTimer countDownTimer;
+    private boolean isTimerRunning = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        textViewCountdown = findViewById(R.id.textViewCountdown);
+        startTimerButton = findViewById(R.id.startTimerButton);
+
+        startTimerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isTimerRunning) {
+                    startTimer(10 * 1000); // Set timer for 10 seconds (adjust as needed)
+                }
+            }
+        });
+    }
+
+    private void startTimer(long milliseconds) {
+        countDownTimer = new CountDownTimer(milliseconds, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                updateTimerUI(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                updateTimerUI(0);
+            }
+        };
+        countDownTimer.start();
+        isTimerRunning = true;
+    }
+
+    private void updateTimerUI(long millisUntilFinished) {
+        int seconds = (int) (millisUntilFinished / 1000);
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        seconds = seconds % 60;
+
+        String timerText = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        textViewCountdown.setText(timerText);
+    }
+}
+
+# Activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Your other UI elements -->
+
+    <Button
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toggle Clock"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <AnalogClock
+        android:id="@+id/analogClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toggleButton"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textViewCountdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="00:00:00"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"/>
+
+    <Button
+        android:id="@+id/startTimerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Timer"
+        android:layout_below="@id/textViewCountdown"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
+
+</RelativeLayout>
